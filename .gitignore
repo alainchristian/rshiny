@@ -1,0 +1,15 @@
+# R session artifacts
+.RData
+.Rhistory
+.Rproj.user/
+
+# Claude Code local settings
+.claude/
+
+# shinyapps.io deployment metadata (contains account tokens)
+rsconnect/
+
+# Windows artifacts
+Thumbs.db
+Desktop.ini
+nul

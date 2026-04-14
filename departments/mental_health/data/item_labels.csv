@@ -1,0 +1,21 @@
+scale,item_col,label
+PHQ_old,dep_item_1,Anhedonia
+PHQ_old,dep_item_2,Depressed mood
+ANX_old,anx_item_1,Nervous/anxious
+ANX_old,anx_item_2,Panic
+ANX_old,anx_item_3,Avoidance
+PHQ_new,dep_item_1,Anhedonia
+PHQ_new,dep_item_2,Depressed mood
+PHQ_new,dep_item_3,Sleep
+PHQ_new,dep_item_4,Fatigue
+PHQ_new,dep_item_5,Appetite
+PHQ_new,dep_item_6,Worthlessness
+PHQ_new,dep_item_7,Concentration
+PHQ_new,dep_item_8,Suicidal ideation
+GAD_new,anx_item_1,Nervous/edge
+GAD_new,anx_item_2,Uncontrollable worry
+GAD_new,anx_item_3,Excessive worry
+GAD_new,anx_item_4,Trouble relaxing
+GAD_new,anx_item_5,Restless
+GAD_new,anx_item_6,Irritable
+GAD_new,anx_item_7,Afraid

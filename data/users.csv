@@ -1,0 +1,3 @@
+username,password_hash,role,full_name,email,created_at,active
+admin,d1be341bb5dfc4c97ef5d3135bb63422a42cc767c72bad581145c997b4e79acd,admin,ASYV Administrator,admin@asyv.org,2024-01-01,TRUE
+alice,c775e7b757ede630cd0aa1113bd102661ab38829ca52a6422ab782862f268646,viewer,Aline Ngenzi,alice@asyv.org,2026-03-31,TRUE
