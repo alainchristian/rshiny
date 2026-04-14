@@ -119,18 +119,18 @@ output$ys_chart_province <- renderPlotly({
     type        = "bar",
     orientation = "h",
     marker      = list(
-      color = "rgba(46,77,135,.18)",
-      line  = list(color = "#2E4D87", width = 1.5)
+      color = "rgba(11,77,59,.18)",
+      line  = list(color = "#0B4D3B", width = 1.5)
     ),
     text          = ~n,
     textposition  = "outside",
-    textfont      = list(size = 11, color = "#64748B"),
-    hovertemplate = "%{y}: <b>%{x}</b><extra></extra>"
+    textfont      = list(size = 11, color = "#374151"),
+    hovertemplate = "<b>%{y}</b><br>Respondents: <b>%{x:,}</b><extra></extra>"
   ) %>%
     plotly_layout(
-      xaxis  = list(title = "Respondents"),
-      yaxis  = list(title = ""),
-      margin = list(l = 10, r = 55, t = 20, b = 40)
+      xaxis  = list(title = "Number of Respondents", tickfont = list(size = 11)),
+      yaxis  = list(title = "", tickfont = list(size = 11)),
+      margin = list(l = 10, r = 60, t = 20, b = 40)
     )
 })
 
@@ -156,18 +156,18 @@ output$ys_chart_education <- renderPlotly({
     y            = ~n,
     type         = "bar",
     marker       = list(
-      color = "rgba(55,86,35,.18)",
-      line  = list(color = "#375623", width = 1.5)
+      color = "rgba(212,168,67,.22)",
+      line  = list(color = "#D4A843", width = 1.5)
     ),
     text          = ~n,
     textposition  = "outside",
-    textfont      = list(size = 11, color = "#64748B"),
-    hovertemplate = "%{x}: <b>%{y}</b><extra></extra>"
+    textfont      = list(size = 11, color = "#374151"),
+    hovertemplate = "<b>%{x}</b><br>Count: <b>%{y:,}</b><extra></extra>"
   ) %>%
     plotly_layout(
-      xaxis  = list(title = "Education Level"),
-      yaxis  = list(title = "Count"),
-      margin = list(l = 40, r = 20, t = 20, b = 60)
+      xaxis  = list(title = "Education Level", tickfont = list(size = 11)),
+      yaxis  = list(title = "Number of Respondents", tickfont = list(size = 11)),
+      margin = list(l = 50, r = 20, t = 20, b = 65)
     )
 })
 
@@ -209,10 +209,10 @@ output$ys_chart_emp_gender <- renderPlotly({
       orientation    = "h",
       name           = "Male",
       marker         = list(color = "#1F3864"),
-      text           = ~ifelse(n > 0, n, ""),
+      text           = ~ifelse(n > 0, as.character(n), ""),
       textposition   = "inside",
-      insidetextfont = list(color = "white", size = 12),
-      hovertemplate  = "%{y} — Male: <b>%{x}</b><extra></extra>"
+      insidetextfont = list(color = "white", size = 12, family = "Plus Jakarta Sans"),
+      hovertemplate  = "<b>%{y}</b><br>Male: <b>%{x:,}</b><extra></extra>"
     ) %>%
     add_trace(
       data           = female_d,
@@ -221,18 +221,19 @@ output$ys_chart_emp_gender <- renderPlotly({
       type           = "bar",
       orientation    = "h",
       name           = "Female",
-      marker         = list(color = "#C00000"),
-      text           = ~ifelse(n > 0, n, ""),
+      marker         = list(color = "#C75B39"),
+      text           = ~ifelse(n > 0, as.character(n), ""),
       textposition   = "inside",
-      insidetextfont = list(color = "white", size = 12),
-      hovertemplate  = "%{y} — Female: <b>%{x}</b><extra></extra>"
+      insidetextfont = list(color = "white", size = 12, family = "Plus Jakarta Sans"),
+      hovertemplate  = "<b>%{y}</b><br>Female: <b>%{x:,}</b><extra></extra>"
     ) %>%
     plotly_layout(
       barmode = "stack",
-      xaxis   = list(title = "Respondents"),
-      yaxis   = list(title = ""),
-      legend  = list(orientation = "h", x = 0.5, xanchor = "center", y = -0.25),
-      margin  = list(l = 10, r = 20, t = 10, b = 60)
+      xaxis   = list(title = "Number of Respondents", tickfont = list(size = 11)),
+      yaxis   = list(title = "", tickfont = list(size = 12)),
+      legend  = list(orientation = "h", x = 0.5, xanchor = "center", y = -0.28,
+                     font = list(size = 12)),
+      margin  = list(l = 10, r = 20, t = 10, b = 65)
     )
 })
 
@@ -269,15 +270,16 @@ output$ys_table_province <- DT::renderDT({
 
   DT::datatable(
     d,
-    class    = "nowrap compact",
+    class    = "nowrap compact stripe hover",
     rownames = FALSE,
-    options  = list(dom = "t", scrollX = TRUE, pageLength = 20)
+    options  = list(dom = "t", scrollX = TRUE, pageLength = 20,
+                    language = list(emptyTable = "No data available"))
   ) %>%
     DT::formatPercentage("Employment Rate", digits = 1) %>%
     DT::formatStyle(
       "Employment Rate",
-      background         = DT::styleColorBar(c(0, 1), "#375623"),
-      backgroundSize     = "100% 88%",
+      background         = DT::styleColorBar(c(0, 1), "#0B4D3B"),
+      backgroundSize     = "100% 80%",
       backgroundRepeat   = "no-repeat",
       backgroundPosition = "center"
     ) %>%
@@ -336,11 +338,19 @@ output$ys_table_marital <- DT::renderDT({
 
   DT::datatable(
     d,
-    class    = "nowrap compact",
+    class    = "nowrap compact stripe hover",
     rownames = FALSE,
-    options  = list(dom = "t", scrollX = TRUE)
+    options  = list(dom = "t", scrollX = TRUE,
+                    language = list(emptyTable = "No data available"))
   ) %>%
     DT::formatPercentage("Emp. Rate", digits = 1) %>%
+    DT::formatStyle(
+      "Emp. Rate",
+      background         = DT::styleColorBar(c(0, 1), "#0B4D3B"),
+      backgroundSize     = "100% 80%",
+      backgroundRepeat   = "no-repeat",
+      backgroundPosition = "center"
+    ) %>%
     DT::formatStyle(
       "Group",
       target     = "row",
